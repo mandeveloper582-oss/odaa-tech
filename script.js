@@ -1,5 +1,4 @@
-
-const BASE_URL = "http://localhost:5000";
+ const BASE_URL = "http://localhost:5000";
 
 console.log("Frontend loaded 🚀");
 
@@ -8,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== ELEMENTS =====
   const menuBtn = document.getElementById("menuBtn");
   const menu = document.getElementById("menu");
-  const menu = document.getElementById("overlay");
+  const overlay = document.getElementById("overlay");
+
   const title = document.getElementById("title");
   const content = document.getElementById("content");
   const likeBtn = document.getElementById("likeBtn");
@@ -21,62 +21,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashboard = document.getElementById("dashboard");
   const postForm = document.getElementById("postForm");
 
-  // ===== MENU =====
-  menuBtn.onclick = () => menu.classList.toggle("open");
-  
+  // ===== MENU OPEN/CLOSE =====
   menuBtn.addEventListener("click", () => {
     menu.classList.add("open");
     overlay.classList.add("active");
   });
+
+  window.closeMenu = function () {
+    menu.classList.remove("open");
+    overlay.classList.remove("active");
+  };
+
+  overlay.addEventListener("click", closeMenu);
+
   // ===== DARK MODE =====
   document.getElementById("darkToggle").onclick = () => {
     document.body.classList.toggle("dark");
   };
-  
 
-function toggleDrawer(){
-  document.getElementById("drawer").classList.add("open");
-  document.getElementById("overlay").classList.add("active");
-
-});
-
-// CLOSE MENU (screen click)
-function closeMenu(){
-  menu.classList.remove("open");
-  overlay.classList.remove("active");
-}
-function closeDrawer(){
-  document.getElementById("drawer").classList.remove("open");
-  document.getElementById("overlay").classList.remove("active");
-}
-window.closeMenu = function(){
-    menu.classList.remove("open");
-    overlay.classList.remove("active");
-  };
   // ===== TOKEN =====
   window.token = localStorage.getItem("token");
-  if (window.token) dashboard.classList.remove("active");
+  if (window.token) dashboard.classList.remove("hidden");
 
-  // ===== SECTION =====
-  window.showSection = function(id) {
-    document.querySelectorAll("section").forEach(sec => sec.classList.add("active"));
-    document.getElementById(id).classList.remove("active");
+  // ===== SECTION SWITCH =====
+  window.showSection = function (id) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+    document.getElementById(id).classList.remove("hidden");
+
     menu.classList.remove("open");
+    overlay.classList.remove("active");
 
     if (id === "home") loadPosts();
   };
 
   // ===== LOCAL STORAGE =====
-  function saveLocal(posts){
+  function saveLocal(posts) {
     localStorage.setItem("posts_backup", JSON.stringify(posts));
   }
 
-  function getLocal(){
+  function getLocal() {
     return JSON.parse(localStorage.getItem("posts_backup")) || [];
   }
 
   // ===== LOAD POSTS =====
-  async function loadPosts(){
+  async function loadPosts() {
     const home = document.getElementById("home");
     home.innerHTML = "Loading...";
 
@@ -84,22 +72,21 @@ window.closeMenu = function(){
       const res = await fetch(BASE_URL + "/posts");
       const data = await res.json();
 
-      saveLocal(data); // backup
+      saveLocal(data);
       renderPosts(data);
 
-    } catch (err){
-      console.warn("Backend down → using offline data");
-      const local = getLocal();
-      renderPosts(local);
+    } catch (err) {
+      console.warn("Backend down → offline mode");
+      renderPosts(getLocal());
     }
   }
 
   // ===== RENDER POSTS =====
-  function renderPosts(posts){
+  function renderPosts(posts) {
     const home = document.getElementById("home");
-    home.innerHTML =` ""`;
+    home.innerHTML = "";
 
-    if (!posts.length){
+    if (!posts || posts.length === 0) {
       home.innerHTML = `"<h3>No posts available</h3>"`;
       return;
     }
@@ -108,15 +95,15 @@ window.closeMenu = function(){
       home.innerHTML += `
         <div class="card">
           <h3>${p.title}</h3>
-          <p>${p.content.slice(0,80)}...</p>
+          <p>${p.content.slice(0, 80)}...</p>
           <button onclick="openPost('${p._id || p.id}')">Read More</button>
         </div>
-     ` ;
-    });
+      ;
+    `});
   }
 
   // ===== OPEN POST =====
-  window.openPost = async function(id){
+  window.openPost = async function (id) {
     try {
       const res = await fetch(BASE_URL + "/posts/" + id);
       const p = await res.json();
@@ -127,35 +114,34 @@ window.closeMenu = function(){
       content.innerText = p.content;
       likeCount.innerText = p.likes || 0;
 
-      // LIKE
       likeBtn.onclick = async () => {
-        try{
-          const r = await fetch(BASE_URL + "/posts/" + id + "/like", {method:"POST"});
+        try {
+          const r = await fetch(BASE_URL + "/posts/" + id + "/like", {
+            method: "POST"
+          });
           const d = await r.json();
           likeCount.innerText = d.likes;
-        }catch{
+        } catch {
           alert("Like failed ❌");
         }
       };
 
-      fd.append("media", file);
       media.innerHTML = "";
-      if (p.media){
-        p.media.forEach(m=>{
-          if (m.type.includes("image")){
-            media.innerHTML += `<img src="${BASE_URL + m.url}" />`;
-          }else if (m.type.includes("video")){
+      if (p.media) {
+        p.media.forEach(m => {
+          if (m.type.includes("image")) {
+            media.innerHTML += `<img src="${BASE_URL + m.url}">`;
+          } else if (m.type.includes("video")) {
             media.innerHTML += `<video controls src="${BASE_URL + m.url}"></video>`;
+          } else {
+            media.innerHTML += `<a href="${BASE_URL + m.url}" download>Download file</a>`;
           }
-          else{ media.innerHTML += `<a href="${BASE_URL + m.url}" download>Download pdf</a>`; }
         });
       }
-
-      // COMMENTS
-      comments.innerHTML = "";
-      if (p.comments){
-        p.comments.forEach(c=>{
-          comments.innerHTML += ` <div class="comment"><b>${c.name}</b>: ${c.text}</div>`;
+ comments.innerHTML = "";
+      if (p.comments) {
+        p.comments.forEach(c => {
+          comments.innerHTML += `<div class="comment"><b>${c.name}</b>: ${c.text}</div>`;
         });
       }
 
@@ -169,10 +155,11 @@ window.closeMenu = function(){
   // ===== COMMENT =====
   commentForm.onsubmit = async e => {
     e.preventDefault();
- try{
+
+    try {
       await fetch(BASE_URL + "/posts/" + window.currentPost + "/comments", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: document.getElementById("name").value,
           text: document.getElementById("text").value
@@ -181,7 +168,7 @@ window.closeMenu = function(){
 
       openPost(window.currentPost);
 
-    }catch{
+    } catch {
       alert("Comment failed ❌");
     }
   };
@@ -190,10 +177,10 @@ window.closeMenu = function(){
   loginForm.onsubmit = async e => {
     e.preventDefault();
 
-    try{
+    try {
       const res = await fetch(BASE_URL + "/admin/login", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username: document.getElementById("user").value,
           password: document.getElementById("pass").value
@@ -202,16 +189,16 @@ window.closeMenu = function(){
 
       const d = await res.json();
 
-      if (d.token){
+      if (d.token) {
         window.token = d.token;
         localStorage.setItem("token", d.token);
         dashboard.classList.remove("hidden");
         alert("Login success ✅");
-      }else{
+      } else {
         alert("Login failed ❌");
       }
 
-    }catch{
+    } catch {
       alert("Server error ❌");
     }
   };
@@ -225,14 +212,14 @@ window.closeMenu = function(){
     fd.append("content", document.getElementById("pcontent").value);
 
     const files = document.getElementById("file").files;
-    for (let f of files){
+    for (let f of files) {
       fd.append("media", f);
     }
 
-    try{
+    try {
       await fetch(BASE_URL + "/posts", {
-        method:"POST",
-        headers:{ Authorization:"Bearer " + window.token },
+        method: "POST",
+        headers: { Authorization: "Bearer " + window.token },
         body: fd
       });
 
@@ -240,15 +227,15 @@ window.closeMenu = function(){
       loadPosts();
       showSection("home");
 
-    }catch{
+    } catch {
       alert("Create failed ❌");
     }
   };
 
-  window.showSection=function(id){
-    document.querySelectorAll("section").forEach(s => s.classList.add("hidden"));
-    document.getElementById(id).classList.remove("hidden");
-  };
+  // INIT
   showSection("home");
+  loadPosts();
 
 });
+
+ 
