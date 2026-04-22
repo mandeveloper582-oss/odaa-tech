@@ -1,0 +1,285 @@
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:#f0f2f5;
+  color:#050505;
+  transition:0.3s;
+}
+
+body.dark{
+  background:#18191a;
+  color:#e4e6eb;
+}
+.footer {
+  background: #111;
+  color: #fff;
+  padding: 40px 20px 10px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left h3 {
+  margin-bottom: 10px;
+  color: #00ff88;
+}
+
+.footer-links a,
+.footer-social a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+  color: #00ff88;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* mobile responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 16px;
+  background:linear-gradient(45deg,#1877f2,#0d5ddf);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+.logo{
+  font-weight:bold;
+  font-size:20px;
+  letter-spacing:1px;
+}
+
+.header-actions button{
+  margin-left:8px;
+  font-size:18px;
+  background:rgba(255,255,255,0.2);
+  border:none;
+  padding:6px 10px;
+  border-radius:8px;
+  transition:0.2s;
+}
+
+.header-actions button:hover{
+  background:rgba(255,255,255,0.35);
+}
+
+.drawer{
+  position:fixed;
+  left:-260px;
+  top:0;
+  width:260px;
+  height:100%;
+  background:white;
+  padding:20px;
+  box-shadow:2px 0 10px rgba(0,0,0,0.3);
+  transition:0.3s ease;
+  z-index:999;
+}
+
+body.dark .drawer{
+  background:#242526;
+}
+
+
+.drawer a{
+  display:block;
+  margin:15px 0;
+  font-size:17px;
+  padding:10px;
+  border-radius:8px;
+  transition:0.2s;
+
+}
+.drawer.open{
+  left:0;
+}
+
+.drawer a:hover{
+  background:#1877f2;
+  color:white;
+  transform:translateX(5px);
+}
+
+.feed{
+  max-width:650px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:16px;
+  border-radius:14px;
+  margin-bottom:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  transition:0.25s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-5px) scale(1.01);
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+body.dark .card{
+  background:#242526;
+}
+
+.card h3{
+  margin-bottom:6px;
+  font-size:18px;
+}
+
+.card p{
+  color:#65676b;
+  font-size:14px;
+}
+button{
+  background:#1877f2;
+  color:white;
+  border:none;
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.2s;
+}
+
+button:hover{
+  background:#0d5ddf;
+  transform:scale(1.05);
+}
+
+#single h2{
+  margin-bottom:10px;
+}
+
+#single p{
+  line-height:1.6;
+}
+
+#media img,
+#media video{
+  width:100%;
+  border-radius:12px;
+  margin-top:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+.comment{
+  background:#e4e6eb;
+  padding:10px;
+  margin-top:6px;
+  border-radius:8px;
+  font-size:14px;
+}
+
+body.dark .comment{
+  background:#3a3b3c;
+}
+
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  outline:none;
+  transition:0.2s;
+}
+
+input:focus,
+textarea:focus{
+  border-color:#1877f2;
+  box-shadow:0 0 5px rgba(24,119,242,0.3);
+}
+
+.section{
+  padding:20px;
+  max-width:650px;
+  margin:auto;
+}
+
+.hidden{
+  display:none;
+}
+
+#dashboard{
+  margin-top:15px;
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+
+body.dark #dashboard{
+  background:#242526;
+}
+
+@media(max-width:768px){
+
+  .header{
+    padding:10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo{
+    font-size:16px;
+  }
+
+  .feed{
+    padding:20px;
+    margin: auto;
+    max-width: 650px;
+  }
+
+  .card{
+    padding:12px;
+  }
+
+  button{
+    width:100%;
+  }
+
+  .drawer{
+    width:220px;
+    left: 0;
+  }
+}
