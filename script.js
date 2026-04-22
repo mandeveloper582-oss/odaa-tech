@@ -237,5 +237,3 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPosts();
 
 });
-
- 
