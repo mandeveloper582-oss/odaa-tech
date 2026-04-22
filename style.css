@@ -11,6 +11,7 @@ body{
   color:#050505;
   transition:0.3s;
   font-family:Arial;
+  margin:0;
 }
 
 body.dark{
@@ -20,7 +21,7 @@ body.dark{
 .footer {
   background: #111;
   color: #fff;
-  padding: 20px 20px 10px;
+  padding: 15px 15px 10px;
   margin-top: 50px;
   text-align:center;
 }
@@ -88,7 +89,7 @@ body.dark{
 
 .header-actions button{
   margin-left:8px;
-  font-size:18px;
+  font-size:16px;
   background:rgba(255,255,255,0.2);
   border:none;
   padding:6px 10px;
@@ -104,10 +105,11 @@ body.dark{
   position:fixed;
   left:-260px;
   top:0;
-  width:260px;
+  width:250px;
   height:100%;
   background:white;
   padding:20px;
+  padding-top:60px;
   box-shadow:2px 0 10px rgba(0,0,0,0.3);
   transition:0.3s ease;
   z-index:999;
@@ -260,8 +262,12 @@ body.dark #dashboard{
     position: sticky;
     top: 0;
     z-index: 1000;
+    margin-top:60px;
+    height:50px;
   }
-
+main{ 
+  margin-top:55px;
+}
   .logo{
     font-size:16px;
   }
