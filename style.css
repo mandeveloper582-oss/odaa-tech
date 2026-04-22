@@ -82,6 +82,9 @@ main{
   visibility:hidden;
   transition:0.3s;
   z-index:998;
+  opacity:0;
+  visibility:hidden;
+  
 }
 
 /* show overlay */
