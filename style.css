@@ -10,6 +10,7 @@ body{
   background:#f0f2f5;
   color:#050505;
   transition:0.3s;
+  font-family:Arial;
 }
 
 body.dark{
@@ -19,8 +20,9 @@ body.dark{
 .footer {
   background: #111;
   color: #fff;
-  padding: 40px 20px 10px;
+  padding: 20px 20px 10px;
   margin-top: 50px;
+  text-align:center;
 }
 
 .footer-container {
@@ -72,7 +74,7 @@ body.dark{
   padding:12px 16px;
   background:linear-gradient(45deg,#1877f2,#0d5ddf);
   color:white;
-  position:sticky;
+  position:fixed;
   top:0;
   z-index:1000;
   box-shadow:0 2px 6px rgba(0,0,0,0.2);
@@ -265,7 +267,7 @@ body.dark #dashboard{
   }
 
   .feed{
-    padding:20px;
+    padding:10px;
     margin: auto;
     max-width: 650px;
   }
