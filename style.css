@@ -12,6 +12,7 @@ body{
   transition:0.3s;
   font-family:Arial;
   margin:0;
+  overflow-x:hedden;
 }
 
 body.dark{
@@ -79,20 +80,22 @@ body.dark{
   top:0;
   z-index:1000;
   box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  height:50px;
+  padding:0 10px;
 }
 
 .logo{
   font-weight:bold;
-  font-size:20px;
+  font-size:16px;
   letter-spacing:1px;
 }
 
 .header-actions button{
   margin-left:8px;
-  font-size:16px;
+  font-size:14px;
   background:rgba(255,255,255,0.2);
   border:none;
-  padding:6px 10px;
+  padding:5px 8px;
   border-radius:8px;
   transition:0.2s;
 }
@@ -105,7 +108,7 @@ body.dark{
   position:fixed;
   left:-260px;
   top:0;
-  width:250px;
+  width:240px;
   height:100%;
   background:white;
   padding:20px;
@@ -149,10 +152,12 @@ body.dark .drawer{
   background:white;
   padding:16px;
   border-radius:14px;
-  margin-bottom:18px;
+  margin-bottom:10px;
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
   transition:0.25s;
   cursor:pointer;
+  width:100px;
+  
 }
 
 .card:hover{
@@ -200,9 +205,11 @@ button:hover{
 #media img,
 #media video{
   width:100%;
+  height:auto;
   border-radius:12px;
   margin-top:12px;
   box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  
 }
 
 .comment{
@@ -234,11 +241,14 @@ textarea:focus{
 }
 
 .section{
+  display:none;
   padding:20px;
   max-width:650px;
   margin:auto;
 }
-
+.section.active{
+  display:block;
+}
 .hidden{
   display:none;
 }
@@ -267,6 +277,7 @@ body.dark #dashboard{
   }
 main{ 
   margin-top:55px;
+  padding:10px;
 }
   .logo{
     font-size:16px;
@@ -287,7 +298,7 @@ main{
   }
 
   .drawer{
-    width:220px;
+    width:200px;
     left: 0;
   }
 }
