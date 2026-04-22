@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== TOKEN =====
   window.token = localStorage.getItem("token");
-  if (window.token) dashboard.classList.remove("hidden");
+  if (window.token) dashboard.classList.remove("active");
 
   // ===== SECTION =====
   window.showSection = function(id) {
-    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
-    document.getElementById(id).classList.remove("hidden");
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("active"));
+    document.getElementById(id).classList.remove("active");
     menu.classList.remove("open");
 
     if (id === "home") loadPosts();
