@@ -174,7 +174,7 @@ input,textarea{
 .footer{
   background:#111;
   color:#fff;
-  padding:25px 15px;
+  padding:20px 10px;
   margin-top:auto;   /* 🔥 IMPORTANT */
 }
 
@@ -201,6 +201,19 @@ input,textarea{
   .logo{
     font-size:15px;
   }
+  .foter{
+    padding:8px 10px;
+    font-size:12px;
+  }
+  .footer-bottom{
+    font-size:11px;
+    margin-top:18px;
+  }
+    
+.footer-container{
+  gap:10px;
+}
+  
   .header-right button {
     padding:6px 8px;
     font-size:14px;
