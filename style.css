@@ -22,6 +22,7 @@ body{
 body.dark{
   background:#18191a;
   color:#e4e6eb;
+
 }
 
 /* ===== HEADER ===== */
@@ -51,6 +52,19 @@ body.dark{
   padding:6px 10px;
   border-radius:8px;
 }
+.header-right button {
+  display:flex;
+  align-items:center;
+  gap:8;}
+.header-right button {
+  font-size:16px;
+  background:rgba(255,255,255,0.2);
+  border:none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+  
 
 /* ===== MAIN ===== */
 main{
@@ -91,6 +105,7 @@ body.dark .drawer{
   max-width:650px;
   margin:auto;
   padding:15px;
+  margin-top:10px;
 }
 
 /* ===== CARD ===== */
@@ -186,6 +201,10 @@ input,textarea{
   .logo{
     font-size:15px;
   }
+  .header-right button {
+    padding:6px 8px;
+    font-size:14px;
+  
 
   main{
     margin-top:55px;
