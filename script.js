@@ -33,11 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function toggleDrawer(){
   document.getElementById("drawer").classList.add("open");
   document.getElementById("overlay").classList.add("active");
-}
-// OPEN MENU
-menuBtn.addEventListener("click", () => {
-  menu.classList.add("open");
-  overlay.classList.add("active");
+
 });
 
 // CLOSE MENU (screen click)
