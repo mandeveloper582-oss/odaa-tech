@@ -23,7 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== MENU =====
   menuBtn.onclick = () => menu.classList.toggle("open");
-
+  
+  menuBtn.addEventListener("click", () => {
+    menu.classList.add("open");
+    overlay.classList.add("active");
+  });
   // ===== DARK MODE =====
   document.getElementById("darkToggle").onclick = () => {
     document.body.classList.toggle("dark");
@@ -45,7 +49,10 @@ function closeDrawer(){
   document.getElementById("drawer").classList.remove("open");
   document.getElementById("overlay").classList.remove("active");
 }
-
+window.closeMenu = function(){
+    menu.classList.remove("open");
+    overlay.classList.remove("active");
+  };
   // ===== TOKEN =====
   window.token = localStorage.getItem("token");
   if (window.token) dashboard.classList.remove("active");
