@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== ELEMENTS =====
   const menuBtn = document.getElementById("menuBtn");
   const menu = document.getElementById("menu");
-
+  const menu = document.getElementById("overlay");
   const title = document.getElementById("title");
   const content = document.getElementById("content");
   const likeBtn = document.getElementById("likeBtn");
@@ -34,7 +34,17 @@ function toggleDrawer(){
   document.getElementById("drawer").classList.add("open");
   document.getElementById("overlay").classList.add("active");
 }
+// OPEN MENU
+menuBtn.addEventListener("click", () => {
+  menu.classList.add("open");
+  overlay.classList.add("active");
+});
 
+// CLOSE MENU (screen click)
+function closeMenu(){
+  menu.classList.remove("open");
+  overlay.classList.remove("active");
+}
 function closeDrawer(){
   document.getElementById("drawer").classList.remove("open");
   document.getElementById("overlay").classList.remove("active");
