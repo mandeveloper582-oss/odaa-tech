@@ -12,6 +12,8 @@ body{
   transition:0.3s;
   font-family:Arial;
   margin:0;
+  display:flex;
+  flex-direction:column;
   overflow-x:hedden;
 }
 
@@ -289,12 +291,14 @@ main{
     max-width: 650px;
   }
 
-  .card{
+  .card,section{
     padding:12px;
+    width:100%;
   }
 
   button{
     width:100%;
+    margin-bottom:10px;
   }
 
   .drawer{
